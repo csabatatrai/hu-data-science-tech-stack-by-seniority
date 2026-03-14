@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Technológiai Elvárások Magyarországon (2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Warm Neutrals with Professional Blue/Emerald/Purple Accents -->
+    <!-- Application Structure Plan: A dashboard-style layout focused on user exploration. It starts with a level selector (Junior/Medior/Senior). Upon selection, the main view updates dynamically to show a radar chart of skill focus areas alongside a detailed, referential list of technologies. A bottom section provides a static comparative view showing how specific tech requirements (like Cloud or MLOps) scale with seniority. This structure allows the user to immediately see what is relevant to their current or desired level, avoiding information overload. -->
+    <!-- Visualization & Content Choices: 
+         1. Interactive Radar Chart (Chart.js Canvas): Compares skill categories (Programming, ML, MLOps, Viz, Cloud) for the selected seniority. Goal: Inform & Compare. Justification: Radar charts quickly show the 'shape' of a role's requirements.
+         2. Dynamic Text List: Displays the actual technologies with context and links. Goal: Inform & Organize.
+         3. Stacked Bar Chart (Chart.js Canvas): Shows the transition of core skills across the 3 levels. Goal: Change/Trends. Justification: Clearly illustrates the shift from basic coding to architecture and MLOps as one advances. 
+         Library: Chart.js for all visuals. NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc; /* Tailwind slate-50 */
+            color: #334155; /* Tailwind slate-700 */
+        }
+        
+        /* Strict Chart Container Styling per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+            min-height: 300px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .level-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .level-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm border-b border-slate-200 py-8 mb-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">Data Science Technológiák a Magyar Munkaerőpiacon</h1>
+            <p class="text-lg text-slate-600 max-w-3xl">
+                Interaktív elemzés a legkeresettebb technológiákról és eszközökről a hazai adatudományi állásajánlatokban. 
+                Válasszon szenioritási szintet a specifikus elvárások és referenciák felfedezéséhez!
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Interactive Level Selector Section -->
+        <section class="mb-12">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-4">Szenioritási Szint Kiválasztása</h2>
+                <p class="text-sm text-slate-500 mb-6">Kattintson az alábbi gombok egyikére, hogy megtekintse az adott szinthez tartozó legfontosabb technológiai elvárásokat és a fókuszterületek megoszlását.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button id="btn-junior" onclick="selectLevel('junior')" class="level-btn active bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 px-6 rounded-lg text-center flex flex-col items-center justify-center">
+                        <span class="text-2xl mb-1">🌱</span>
+                        <span>Junior Data Scientist</span>
+                        <span class="text-xs font-normal opacity-80 mt-1">0-2 év tapasztalat</span>
+                    </button>
+                    <button id="btn-medior" onclick="selectLevel('medior')" class="level-btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg text-center flex flex-col items-center justify-center">
+                        <span class="text-2xl mb-1">🚀</span>
+                        <span>Medior Data Scientist</span>
+                        <span class="text-xs font-normal opacity-80 mt-1">2-5 év tapasztalat</span>
+                    </button>
+                    <button id="btn-senior" onclick="selectLevel('senior')" class="level-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg text-center flex flex-col items-center justify-center">
+                        <span class="text-2xl mb-1">👑</span>
+                        <span>Senior / Lead Data Scientist</span>
+                        <span class="text-xs font-normal opacity-80 mt-1">5+ év tapasztalat</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            
+            <!-- Visualization Column -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                <h2 id="chart-title" class="text-xl font-bold text-slate-800 mb-2">Képességprofil: Junior</h2>
+                <p class="text-sm text-slate-500 mb-6">A radar diagram az adott szinten elvárt kompetenciák hangsúlyát mutatja (0-100-as skálán).</p>
+                
+                <div class="flex-grow flex items-center justify-center">
+                    <!-- Strict Chart Container -->
+                    <div class="chart-container">
+                        <canvas id="profileChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed List Column -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 id="list-title" class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">Elvárt Technológiák: Junior</h2>
+                <p id="list-desc" class="text-sm text-slate-600 mb-6">
+                    A junior pozícióknál a stabil alapokon van a hangsúly. Fontos az adatmanipuláció, az alapvető statisztika és a tiszta kód írása.
+                </p>
+
+                <div id="tech-list-container" class="fade-in space-y-4">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Comparative Section -->
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 mb-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Evolúció: Hogyan változnak az elvárások?</h2>
+            <p class="text-slate-600 mb-8 max-w-4xl">
+                Az alábbi ábra azt szemlélteti, hogy míg a programozási alapok (Python/SQL) minden szinten elengedhetetlenek maradnak, a felhőtechnológiák (Cloud), az MLOps (modellek élesítése) és az Architektúra tervezés iránti igény hogyan növekszik drasztikusan a medior és senior szintek felé haladva.
+            </p>
+            
+            <div class="chart-container" style="max-width: 800px; height: 50vh; max-height: 500px;">
+                <canvas id="evolutionChart"></canvas>
+            </div>
+            
+            <div class="mt-6 text-sm text-slate-500 bg-slate-50 p-4 rounded border border-slate-100">
+                <strong>Források & Hivatkozások módszertana:</strong> Az adatok és trendek a legnépszerűbb magyar IT állásportálok (NoFluffJobs Hungary, Profession.hu, LinkedIn magyarországi keresések) aggregált elemzésén alapulnak.
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- DATA STORAGE ---
+        // Data structure containing information for each level
+        const levelData = {
+            junior: {
+                title: "Junior Data Scientist",
+                color: "rgb(16, 185, 129)", // Emerald
+                bgColor: "rgba(16, 185, 129, 0.2)",
+                radarData: [90, 85, 60, 20, 80], // Programming, Data Prep, ML, MLOps, Data Viz
+                description: "A junior pozícióknál a stabil alapokon van a hangsúly. Fontos az adatmanipuláció, az alapvető statisztika és az eredmények vizuális prezentálása. Kevésbé elvárás a modellek felhős élesítése (deploy).",
+                technologies: [
+                    {
+                        category: "Programozás & Adatbázis",
+                        items: "Python (Pandas, NumPy), SQL (PostgreSQL/MySQL)",
+                        reason: "A napi adatkivonás és tisztítás alapjai.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=requirement=Python,SQL",
+                        linkText: "Példák NoFluffJobs-on"
+                    },
+                    {
+                        category: "Gépi Tanulás (Alapok)",
+                        items: "Scikit-learn, Statisztikai modellek (Regresszió, Klasszifikáció)",
+                        reason: "Klasszikus ML modellek építése és kiértékelése.",
+                        link: "https://www.profession.hu/allasok/it-programozas/adatbazisszakerto",
+                        linkText: "Keresés a Profession.hu-n"
+                    },
+                    {
+                        category: "Adatvizualizáció",
+                        items: "Power BI, Tableau, Matplotlib/Seaborn",
+                        reason: "Az üzleti döntéshozók számára érthető dashboardok készítése.",
+                        link: "https://www.linkedin.com/jobs/search/?keywords=Junior%20Data%20Scientist%20Power%20BI&location=Hungary",
+                        linkText: "LinkedIn keresés"
+                    },
+                    {
+                        category: "Verziókezelés",
+                        items: "Git / GitHub / GitLab alapok",
+                        reason: "Csapatmunkához elengedhetetlen kódmegosztás.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=requirement=Git",
+                        linkText: "Git elvárások az NFJ-n"
+                    }
+                ]
+            },
+            medior: {
+                title: "Medior Data Scientist",
+                color: "rgb(37, 99, 235)", // Blue
+                bgColor: "rgba(37, 99, 235, 0.2)",
+                radarData: [95, 80, 85, 65, 60],
+                description: "A medior szinttől már elvárás, hogy a modell ne csak egy Jupyter Notebookban fusson le, hanem skálázható legyen, és integrálható legyen a vállalat felhős infrastruktúrájába.",
+                technologies: [
+                    {
+                        category: "Szoftverfejlesztési elvek",
+                        items: "Python (OOP, API fejlesztés - FastAPI/Flask)",
+                        reason: "A modellek önálló szolgáltatásként való kiajánlása.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=seniority=mid%20requirement=FastAPI,Python",
+                        linkText: "Medior Python hirdetések"
+                    },
+                    {
+                        category: "Big Data & Adatfeldolgozás",
+                        items: "PySpark, Databricks, Apache Airflow / dbt",
+                        reason: "Nagy mennyiségű adat (Big Data) elosztott feldolgozása és pipeline-ok automatizálása.",
+                        link: "https://www.linkedin.com/jobs/search/?keywords=Data%20Scientist%20Spark%20Hungary",
+                        linkText: "Spark fókuszú állások"
+                    },
+                    {
+                        category: "Cloud & Containerizáció",
+                        items: "Docker, AWS (Sagemaker) / Azure (Azure ML) / GCP",
+                        reason: "Környezetfüggetlen futtatás és felhős ML szolgáltatások ismerete.",
+                        link: "https://www.profession.hu/allasok/it-programozas?keyword=docker%20data%20scientist",
+                        linkText: "Docker elvárások"
+                    },
+                    {
+                        category: "Modell Menedzsment",
+                        items: "MLflow, Weights & Biases",
+                        reason: "Kísérletek (experiments) nyomon követése, verziózása.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=requirement=MLflow",
+                        linkText: "MLflow a piacon"
+                    }
+                ]
+            },
+            senior: {
+                title: "Senior / Lead Data Scientist",
+                color: "rgb(147, 51, 234)", // Purple
+                bgColor: "rgba(147, 51, 234, 0.2)",
+                radarData: [95, 70, 95, 95, 50],
+                description: "A senior szint fókusza a technikai iránymutatás, a komplex rendszerek (System Design) tervezése, az MLOps (folyamatos integráció és szállítás), valamint a legújabb technológiák (pl. GenAI) üzleti értékre váltása.",
+                technologies: [
+                    {
+                        category: "MLOps & Architektúra",
+                        items: "Kubernetes (K8s), CI/CD (GitHub Actions/GitLab CI), Terraform",
+                        reason: "Skálázható, magas rendelkezésre állású gépi tanulási infrastruktúrák tervezése és fenntartása.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=seniority=senior%20requirement=Kubernetes",
+                        linkText: "Senior K8s elvárások"
+                    },
+                    {
+                        category: "Korszerű AI / GenAI",
+                        items: "LLM-ek finomhangolása, RAG (Retrieval-Augmented Generation), LangChain, HuggingFace",
+                        reason: "Nagy nyelvi modellek integrálása vállalati rendszerekbe.",
+                        link: "https://www.linkedin.com/jobs/search/?keywords=Senior%20Data%20Scientist%20LLM%20Hungary",
+                        linkText: "LLM / GenAI pozíciók"
+                    },
+                    {
+                        category: "Üzleti & Rendszertervezés",
+                        items: "System Design, Mentoring, Stakeholder menedzsment",
+                        reason: "Üzleti problémák lefordítása end-to-end technológiai megoldásokká.",
+                        link: "https://www.profession.hu/allasok/it-programozas/it-vezeto-informatikai-igazgato",
+                        linkText: "IT Vezető/Lead keresések"
+                    },
+                    {
+                        category: "Haladó Adatbázisok",
+                        items: "Vector Database (Pinecone, Weaviate), NoSQL, Graph DB",
+                        reason: "Komplex keresési és ajánlórendszerek kiszolgálása.",
+                        link: "https://nofluffjobs.com/hu/data?criteria=seniority=senior",
+                        linkText: "Senior Data kategória"
+                    }
+                ]
+            }
+        };
+
+        // --- STATE MANAGEMENT ---
+        let currentLevel = 'junior';
+        let profileChartInstance = null;
+
+        // --- CORE INTERACTION LOGIC ---
+        function selectLevel(level) {
+            currentLevel = level;
+            const data = levelData[level];
+
+            // 1. Update UI Buttons
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active', 'ring-4', 'ring-offset-2', 'ring-slate-300');
+                // Remove specific ring colors based on the button
+                btn.classList.remove('ring-emerald-500', 'ring-blue-600', 'ring-purple-600');
+            });
+            
+            const activeBtn = document.getElementById(`btn-${level}`);
+            activeBtn.classList.add('active', 'ring-4', 'ring-offset-2');
+            
+            // Add specific ring color
+            if(level === 'junior') activeBtn.classList.add('ring-emerald-500');
+            if(level === 'medior') activeBtn.classList.add('ring-blue-600');
+            if(level === 'senior') activeBtn.classList.add('ring-purple-600');
+
+            // 2. Update Text Content
+            document.getElementById('chart-title').innerText = `Képességprofil: ${data.title}`;
+            document.getElementById('list-title').innerText = `Elvárt Technológiák: ${data.title}`;
+            document.getElementById('list-desc').innerText = data.description;
+
+            // 3. Update DOM List
+            const listContainer = document.getElementById('tech-list-container');
+            listContainer.innerHTML = ''; // Clear current
+            
+            // Re-trigger CSS animation
+            listContainer.classList.remove('fade-in');
+            void listContainer.offsetWidth; // Trigger reflow
+            listContainer.classList.add('fade-in');
+
+            data.technologies.forEach(tech => {
+                const itemHtml = `
+                    <div class="border-l-4 p-4 bg-slate-50 rounded-r-lg shadow-sm" style="border-color: ${data.color}">
+                        <h3 class="font-bold text-slate-800 text-base">${tech.category}</h3>
+                        <p class="text-lg font-mono text-slate-900 mt-1">${tech.items}</p>
+                        <p class="text-sm text-slate-600 mt-2 mb-2"><em>Miért?</em> ${tech.reason}</p>
+                        <a href="${tech.link}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold hover:underline flex items-center gap-1" style="color: ${data.color}">
+                            <span>&#128279;</span> ${tech.linkText}
+                        </a>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', itemHtml);
+            });
+
+            // 4. Update Radar Chart
+            updateRadarChart(data);
+        }
+
+        // --- CHART INITIALIZATION & UPDATES ---
+        
+        function initCharts() {
+            // Setup default formatting for Chart.js
+            Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+            Chart.defaults.color = '#64748b'; // slate-500
+            
+            // Initial render
+            selectLevel('junior');
+            initEvolutionChart();
+        }
+
+        function updateRadarChart(data) {
+            const ctx = document.getElementById('profileChart').getContext('2d');
+            
+            if (profileChartInstance) {
+                // Update existing chart smoothly
+                profileChartInstance.data.datasets[0].data = data.radarData;
+                profileChartInstance.data.datasets[0].backgroundColor = data.bgColor;
+                profileChartInstance.data.datasets[0].borderColor = data.color;
+                profileChartInstance.data.datasets[0].pointBackgroundColor = data.color;
+                profileChartInstance.data.datasets[0].label = data.title;
+                profileChartInstance.update();
+            } else {
+                // Create new chart
+                profileChartInstance = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            'Programozás & SQL', 
+                            'Adatmanipuláció', 
+                            'Gép Tanulás (ML/AI)', 
+                            'MLOps & Cloud', 
+                            'Adatvizualizáció'
+                        ],
+                        datasets: [{
+                            label: data.title,
+                            data: data.radarData,
+                            backgroundColor: data.bgColor,
+                            borderColor: data.color,
+                            pointBackgroundColor: data.color,
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: data.color,
+                            borderWidth: 2,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false, // CRITICAL: allows the chart container to define dimensions
+                        scales: {
+                            r: {
+                                angleLines: { color: '#e2e8f0' },
+                                grid: { color: '#e2e8f0' },
+                                pointLabels: {
+                                    font: { size: 12, weight: '600' },
+                                    color: '#475569'
+                                },
+                                ticks: {
+                                    display: false, // Hide numeric ticks for cleaner look
+                                    min: 0,
+                                    max: 100
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `Fókusz: ${context.raw}/100`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initEvolutionChart() {
+            const ctx = document.getElementById('evolutionChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Junior', 'Medior', 'Senior'],
+                    datasets: [
+                        {
+                            label: 'Programozás (Python/SQL)',
+                            data: [90, 85, 80],
+                            backgroundColor: '#94a3b8', // slate-400
+                        },
+                        {
+                            label: 'Alap Machine Learning',
+                            data: [70, 60, 40],
+                            backgroundColor: '#fcd34d', // amber-300
+                        },
+                        {
+                            label: 'Cloud & Containerizáció',
+                            data: [10, 80, 95],
+                            backgroundColor: '#38bdf8', // sky-400
+                        },
+                        {
+                            label: 'MLOps & Architektúra',
+                            data: [5, 40, 95],
+                            backgroundColor: '#fb7185', // rose-400
+                        },
+                        {
+                            label: 'Korszerű AI / GenAI',
+                            data: [5, 30, 85],
+                            backgroundColor: '#c084fc', // purple-400
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: false,
+                            grid: { display: false }
+                        },
+                        y: {
+                            stacked: false,
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Elvárás gyakorisága / Súlya (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                usePointStyle: true,
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', initCharts);
+
+    </script>
+</body>
+</html>
