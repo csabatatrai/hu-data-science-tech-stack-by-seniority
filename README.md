@@ -4,7 +4,7 @@ Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data S
 
 👉 **[Élő demó megtekintése itt](https://csabatatrai.hu/hu-data-science-tech-stack-by-seniority/)**
 
-> [!IMPORTANT]
+> [!Ötlet]
 > Akár ennek mintájára más szakmákra is érdemes lehet hasonlót elkészíttetni, amihez a fenti kód jó kiindulási alap csak oszd meg Geminivel, miközben a Deep Reasearch be van pipálva és írd meg neki, melyik szakma érdekel ennek mintájára!
 
 ## 💡 A projekt háttere
