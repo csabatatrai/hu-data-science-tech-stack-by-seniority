@@ -44,12 +44,13 @@ Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a gener
 * **Radar diagram értelmezése:** Ha egy seniornál az adatvizualizáció alacsony értéket kap, az nem azt jelenti, hogy azt nem várják el. A diagram a **piaci differenciáló fókuszokat** mutatja. A senior kiírásokban ezt már "alaphigiéniának" veszik, és inkább a szűk keresztmetszetet jelentő technológiákat (pl. Cloud, MLOps, LLM) hangsúlyozzák.
 * **Soft skillek:** A projekt szigorúan a "hard" technológiai stackre fókuszál, a domaintudás és a soft skillek nem szerepelnek benne.
 
-> [!IMPORTANT]
-> 🤝 Kapcsolat & Visszajelzés
-> Kíváncsi vagyok a véleményedre!
-> Ha észrevételed van a hazai tech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
+
+## 🤝 Kapcsolat & Visszajelzés
+Kíváncsi vagyok a véleményedre!
+
+Ha észrevételed van a hazai tech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
 **[csabatatrai.hu/](https://csabatatrai.hu/)**
-> [!IMPORTANT]
-> Vagy vegyük fel a kapcsolatot LinkedIn-en:
+
+Vagy vegyük fel a kapcsolatot LinkedIn-en:
 **[Csaba A. Tátrai](https://www.linkedin.com/in/csabatatrai-datascientist/)**
 
