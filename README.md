@@ -43,4 +43,9 @@ Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a gener
 
 ## 🤝 Kapcsolat & Visszajelzés
 
-Kíváncsi vagyok a szakmai közösség véleményére! Ha észrevételed van a hazai tech stackkel kapcsolatban, vagy csak érdekel az AI által generált kód, keress meg **[LinkedIn-en](Ide tedd be a LinkedIn profilod linkjét)**!
+Kíváncsi vagyok a szakmai közösség véleményére! 
+
+Ha észrevételed van a hazai tech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
+**[csabatatrai.hu/](https://csabatatrai.hu/)**
+Vagy vegyük fel a kapcsolatot LinkedIn-en:
+**[Csaba A. Tátrai]([https://csabatatrai.hu/](https://www.linkedin.com/in/csabatatrai-datascientist/))**
