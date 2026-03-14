@@ -31,6 +31,8 @@ A projekt szándékosan "Zero-build" megközelítéssel készült, hogy egyetlen
 * **Chart.js** (CDN-en keresztül, a Canvas-alapú interaktív diagramokért)
 * **Vanilla JavaScript** (Állapotkezelés, DOM manipuláció és interakciók)
 
+***Ez egy vibe-kódolt weblap, ilyen összetettségű vizualizációt már rábízhatsz egy LLM-re!***
+
 ## 🚀 Futtatás lokálisan
 
 Mivel a projekt egyetlen statikus HTML fájlból áll, semmilyen szerver vagy build folyamat nem szükséges:
