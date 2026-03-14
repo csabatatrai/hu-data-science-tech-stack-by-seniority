@@ -6,7 +6,7 @@ Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data S
 
 ## 💡 A projekt háttere
 
-Ez a projekt egy **LLM (Large Language Model) kísérlet** eredménye. A cél az volt, hogy felmérjem, képes-e a Google Gemini egy komplex prompt alapján:
+Ez a projekt egy **LLM (Large Language Model) kísérlet** eredménye. A cél az volt, hogy felmérjem, képes-e a Google Gemini Deep Research funkció segítségével egyetlen egy prompt alapján:
 1. Aggregálni a magyarországi adatos álláspiac pillanatnyi elvárásait (NoFluffJobs, Profession.hu, LinkedIn adatok alapján).
 2. Szintetizálni az információkat szenioritási szintek szerint.
 3. Megtervezni és lekódolni egy komplett, interaktív frontend dashboardot az adatok vizualizálására.
