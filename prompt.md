@@ -17,7 +17,7 @@
 
 ---
 
-## Prompt 1 — Adatgyűjtés és strukturálás
+## Prompt 1 - Adatgyűjtés és strukturálás
 
 ### Cél
 
@@ -53,7 +53,7 @@ Szedd erre a 3 kategóriára és csinálj felsorolást, hivatkozd meg linkekkel 
 
 ---
 
-## Prompt 2 — Interaktív vizualizáció
+## Prompt 2 - Interaktív vizualizáció
 
 ### Cél
 
@@ -82,7 +82,7 @@ a magyarországi Data Science munkaerőpiac technológiai elvárásait, junior, 
 
 ### Megjegyzések
 
-- A prompt az 1. prompt kimenetére épít — önállóan nem értelmezhető.
+- A prompt az 1. prompt kimenetére épít, önállóan nem értelmezhető.
 - Ha a generált SPA külső CDN-t használ (pl. Chart.js), az offline nem fog működni.
 
 ---
