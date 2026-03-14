@@ -1,4 +1,5 @@
-# Data Science Tech Stack Magyarországon 2026-ban (AI Kísérlet) 🤖📊
+# Data Science Tech Stack Magyarországon 2026-ban (AI Kísérlet) 
+🤖📊
 
 Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data Science munkaerőpiac technológiai elvárásait **junior, medior és senior** szintekre bontva egy véletlenszerű pillanatban vizsgálva 2026-os álláshirdetések alapján.
 
