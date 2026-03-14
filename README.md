@@ -46,7 +46,7 @@ Mivel a projekt egyetlen statikus HTML fájlból áll, semmilyen szerver vagy bu
 Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a generáláskori álláshirdetések kulcsszavait tükrözi.
 * **Radar diagram értelmezése:** Ha egy seniornál az adatvizualizáció alacsony értéket kap, az nem azt jelenti, hogy azt nem várják el. A diagram a **piaci differenciáló fókuszokat** mutatja. A senior kiírásokban ezt már "alaphigiéniának" veszik, és inkább a szűk keresztmetszetet jelentő technológiákat (pl. Cloud, MLOps, LLM) hangsúlyozzák.
 * **Soft skillek:** A projekt szigorúan a "hard" technológiai stackre fókuszál, a domaintudás és a soft skillek nem szerepelnek benne.
-* **Nem validált, hosszútávú, reprezentatív adatok, csak egy pillanatkép, nincs mögötte backend, ami valós időben frissítené!!!**
+* **Nem validált, hosszútávú, reprezentatív adatok, csak egy pillanatkép, nincs mögötte se backend, se pipeline ami valós időben frissítené!!!**
 
 ## 🤝 Kapcsolat & Visszajelzés
 Kíváncsi vagyok a véleményedre!
