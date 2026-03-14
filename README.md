@@ -1,6 +1,8 @@
 # Data Science Tech Stack Magyarországon 2026-ban (AI Kísérlet) 
 🤖📊
 
+# $\color{#FF0066}{\text{prompt.md fájlban láthatod a 2 promptot, amivel ilyet tudsz készíteni!}}$
+
 Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data Science munkaerőpiac technológiai elvárásait **junior, medior és senior** szintekre bontva egy véletlenszerű pillanatban vizsgálva 2026-os álláshirdetések alapján.
 
 👉 **[Élő demó megtekintése itt](https://csabatatrai.hu/hu-data-science-tech-stack-by-seniority/)**
