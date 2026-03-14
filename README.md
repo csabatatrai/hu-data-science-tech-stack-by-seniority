@@ -51,4 +51,5 @@ Ha észrevételed van a hazai tech stackkel kapcsolatban, esetleg van hasonló t
 
 Vagy vegyük fel a kapcsolatot LinkedIn-en:
 
-**[Csaba A. Tátrai]((https://www.linkedin.com/in/csabatatrai-datascientist/))**
+**[Csaba A. Tátrai](https://www.linkedin.com/in/csabatatrai-datascientist/)**
+
