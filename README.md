@@ -1,0 +1,46 @@
+# Data Science Tech Stack Magyarországon (AI Kísérlet) 🤖📊
+
+Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data Science munkaerőpiac technológiai elvárásait **junior, medior és senior** szintekre bontva. 
+
+👉 **[Élő demó megtekintése itt](https://csabatatrai.hu/hu-data-science-tech-stack-by-seniority/)**
+
+## 💡 A projekt háttere
+
+Ez a projekt egy **LLM (Large Language Model) kísérlet** eredménye. A cél az volt, hogy felmérjem, képes-e a Google Gemini egy komplex prompt alapján:
+1. Aggregálni a magyarországi adatos álláspiac pillanatnyi elvárásait (NoFluffJobs, Profession.hu, LinkedIn adatok alapján).
+2. Szintetizálni az információkat szenioritási szintek szerint.
+3. Megtervezni és lekódolni egy komplett, interaktív frontend dashboardot az adatok vizualizálására.
+
+A tárolóban található HTML kód **egy az egyben a nyelvi modell outputja**, manuális kódolási beavatkozás nélkül.
+
+## ✨ Funkciók
+
+* **Interaktív szenioritás-választó:** Váltás a Junior, Medior és Senior szintek között.
+* **Képességprofil (Radar Chart):** Vizuálisan ábrázolja, hol vannak a fókuszok az adott szinten (pl. Programozás vs. MLOps).
+* **Technológiai részletezés:** Konkrét eszközök (Python, SQL, K8s, Docker stb.) listája, iparági indoklással és referencialinkekkel.
+* **Készség-evolúció (Stacked Bar Chart):** Egy összehasonlító ábra, amely megmutatja, hogyan tolódik el a hangsúly a tiszta programozástól az architektúra tervezés és az MLOps felé a karrierút során.
+
+## 🛠️ Tech Stack
+
+A projekt szándékosan "Zero-build" megközelítéssel készült, hogy egyetlen fájlban futtatható legyen:
+* **HTML5** (Szemantikus felépítés)
+* **Tailwind CSS** (CDN-en keresztül, a gyors és reszponzív designért)
+* **Chart.js** (CDN-en keresztül, a Canvas-alapú interaktív diagramokért)
+* **Vanilla JavaScript** (Állapotkezelés, DOM manipuláció és interakciók)
+
+## 🚀 Futtatás lokálisan
+
+Mivel a projekt egyetlen statikus HTML fájlból áll, semmilyen szerver vagy build folyamat nem szükséges:
+1. Klónozd a repót: `git clone https://github.com/FELHASZNALONEVED/REPO_NEVE.git`
+2. Nyisd meg a letöltött mappát.
+3. Kattints duplán a `index.html` (vagy ahogy elnevezted) fájlra, és már meg is nyílik a böngésződben.
+
+## ⚠️ Limitációk és Értelmezés
+
+Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a generáláskori álláshirdetések kulcsszavait tükrözi.
+* **Radar diagram értelmezése:** Ha egy seniornál az adatvizualizáció alacsony értéket kap, az nem azt jelenti, hogy azt nem várják el. A diagram a **piaci differenciáló fókuszokat** mutatja. A senior kiírásokban ezt már "alaphigiéniának" veszik, és inkább a szűk keresztmetszetet jelentő technológiákat (pl. Cloud, MLOps, LLM) hangsúlyozzák.
+* **Soft skillek:** A projekt szigorúan a "hard" technológiai stackre fókuszál, a domaintudás és a soft skillek nem szerepelnek benne.
+
+## 🤝 Kapcsolat & Visszajelzés
+
+Kíváncsi vagyok a szakmai közösség véleményére! Ha észrevételed van a hazai tech stackkel kapcsolatban, vagy csak érdekel az AI által generált kód, keress meg **[LinkedIn-en](Ide tedd be a LinkedIn profilod linkjét)**!
