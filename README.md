@@ -51,7 +51,7 @@ Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a gener
 ## 🤝 Kapcsolat & Visszajelzés
 Kíváncsi vagyok a véleményedre!
 
-Ha észrevételed van a hazai elvárttech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
+Ha észrevételed van a hazai elvárt tech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
 **[csabatatrai.hu](https://csabatatrai.hu/)**
 
 Vagy vegyük fel a kapcsolatot LinkedIn-en:
