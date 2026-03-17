@@ -34,12 +34,10 @@ Fontos kiemelni, hogy ez a vizualizáció egy **pillanatfelvétel**, ami a gener
 * **Soft skillek:** A projekt szigorúan a "hard" technológiai stackre fókuszál, a domaintudás és a soft skillek nem szerepelnek benne.
 * **Nem validált, hosszútávú, reprezentatív adatok, csak egy pillanatkép, nincs mögötte se backend, se pipeline ami valós időben frissítené!!!**
 
-## 🤝 Kapcsolat & Visszajelzés
-Kíváncsi vagyok a véleményedre!
+## 🤝 Kapcsolat
 
-Ha észrevételed van a hazai elvárt tech stackkel kapcsolatban, esetleg van hasonló témájú projekted amit megosztanál, keress meg a személyes oldalamon található formon:
 **[csabatatrai.hu](https://csabatatrai.hu/)**
 
-Vagy vegyük fel a kapcsolatot LinkedIn-en:
+LinkedIn:
 **[Csaba A. Tátrai](https://www.linkedin.com/in/csabatatrai-datascientist/)**
 
