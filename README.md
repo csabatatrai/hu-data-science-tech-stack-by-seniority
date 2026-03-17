@@ -15,10 +15,10 @@ Ez a projekt egy **LLM (Large Language Model) kísérlet** eredménye. A cél az
 2. Szintetizálni az információkat szenioritási szintek szerint.
 3. Megtervezni és lekódolni egy komplett, interaktív frontend dashboardot az adatok vizualizálására.
 
-A repoban található HTML kód **egy az egyben a nyelvi modell outputja**, manuális kódolási beavatkozás nélkül.
+
 
 > [!CAUTION]
-> Ez egy vibe-kódolt weblap, ilyen összetettségű vizualizációt már rábízhatsz egy LLM-re!
+> A repoban található HTML kód egy az egyben a nyelvi modell outputja, manuális kódolási beavatkozás nélkül.
 
 ## 🚀 Futtatás lokálisan
 
