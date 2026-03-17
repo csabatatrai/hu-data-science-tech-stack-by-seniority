@@ -1,8 +1,6 @@
 # Data Science Tech Stack Magyarországon 2026-ban (AI Kísérlet) 
 🤖📊
 
-# $\color{#FF0066}{\text{pomptok: lásd prompt.md fájlban}}$
-
 Egy interaktív, egyoldalas webalkalmazás (SPA), amely bemutatja a hazai Data Science munkaerőpiac technológiai elvárásait **junior, medior és senior** szintekre bontva egy véletlenszerű pillanatban vizsgálva 2026-os álláshirdetések alapján.
 
 👉 **[Élő demó megtekintése itt](https://csabatatrai.hu/hu-data-science-tech-stack-by-seniority/)**
@@ -18,21 +16,6 @@ Ez a projekt egy **LLM (Large Language Model) kísérlet** eredménye. A cél az
 3. Megtervezni és lekódolni egy komplett, interaktív frontend dashboardot az adatok vizualizálására.
 
 A repoban található HTML kód **egy az egyben a nyelvi modell outputja**, manuális kódolási beavatkozás nélkül.
-
-## ✨ Funkciók
-
-* **Interaktív szenioritás-választó:** Váltás a Junior, Medior és Senior szintek között.
-* **Képességprofil (Radar Chart):** Vizuálisan ábrázolja, hol vannak a fókuszok az adott szinten (pl. Programozás vs. MLOps).
-* **Technológiai részletezés:** Konkrét eszközök (Python, SQL, K8s, Docker stb.) listája, iparági indoklással és referencialinkekkel.
-* **Készség-evolúció (Stacked Bar Chart):** Egy összehasonlító ábra, amely megmutatja, hogyan tolódik el a hangsúly a tiszta programozástól az architektúra tervezés és az MLOps felé a karrierút során.
-
-## 🛠️ Tech Stack
-
-A projekt szándékosan "Zero-build" megközelítéssel készült, hogy egyetlen fájlban futtatható legyen:
-* **HTML5** (Szemantikus felépítés)
-* **Tailwind CSS** (CDN-en keresztül, a gyors és reszponzív designért)
-* **Chart.js** (CDN-en keresztül, a Canvas-alapú interaktív diagramokért)
-* **Vanilla JavaScript** (Állapotkezelés, DOM manipuláció és interakciók)
 
 > [!CAUTION]
 > Ez egy vibe-kódolt weblap, ilyen összetettségű vizualizációt már rábízhatsz egy LLM-re!
